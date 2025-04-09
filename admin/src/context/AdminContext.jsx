@@ -7,7 +7,8 @@ export const AdminContext = createContext()
 const AdminContextProvider = (props)=>{
     const [atoken, setatoken]= useState(localStorage.getItem('atoken'))
     const [doctors,setDoctors]= useState([])
-    const backendUrl= "http://localhost:4000"
+    const backendUrl= import.meta.env.VITE_BACKEND_URL;
+    
    
     
 
@@ -35,13 +36,15 @@ const AdminContextProvider = (props)=>{
             if(data.success){
                 toast.success(data.message) 
                 getAllDoctors()
+            }else{
+                toast.error(data.message)
             }
         } catch (error) {
             toast.error(data.message)
         }
     }
     const value = {
-        atoken,setatoken, backendUrl,doctors,getAllDoctors
+        atoken,setatoken, backendUrl,doctors,getAllDoctors,changeAvailability
     }
 
     return(

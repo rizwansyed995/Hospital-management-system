@@ -8,7 +8,7 @@ const Navbar = () => {
   const [token,setToken]=useState(true);
   
   return (
-    <div className='flex items-center justify-between text-md py-4  border-b border-b-gray-400 mb-10' >
+    <div className='flex items-center justify-between text-md md:text-lg py-4  border-b border-b-gray-400 mb-10' >
       <Link to='/' ><img className='w-35 cursor-pointer'  src={assets.CareAi} alt=""  /></Link>
         
         <ul className='hidden md:flex item-start gap-5 font-medium  ' >
