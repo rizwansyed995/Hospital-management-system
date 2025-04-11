@@ -12,6 +12,7 @@ import appointments_icon from './appointments_icon.svg'
 import earning_icon from './earning_icon.svg'
 import patients_icon from './patients_icon.svg'
 import careai_nobg from './CareAi-removebg.png'
+import CareAi from './CareAi.png'
 
 export const assets = {
     careai_nobg,
@@ -27,5 +28,6 @@ export const assets = {
     list_icon,
     tick_icon,
     appointments_icon,
-    earning_icon
+    earning_icon,
+    CareAi
 }
