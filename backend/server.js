@@ -25,7 +25,7 @@ app.use('/api/user',userRouter) // local host 4000/ api/user
 
 app.get('/',(req,res)=>{
  res.send("API WORKING")
- console.log("hello");
+
  
 })
 
