@@ -6,6 +6,11 @@ import { useEffect } from 'react'
 const MyAppointments = () => {
   const {backendUrl,token}=useContext(AppContext)
   const [appointments,setAppointments] = useState([])
+  const months=["January","February","March","April","May","June","July","August","September","October","November","December"]
+  const slotDateFormat = (slotDate) => {
+     const dateArray= slotDate.split('_')
+     return dateArray[0]+" "+months[Number(dateArray[1])-1]+" " + dateArray[2]
+  }
   const getUserAppointments = async () => {
     try {
       const {data} = await axios.get(backendUrl+"/api/user/appointments",{headers:{token}})
@@ -29,7 +34,7 @@ const MyAppointments = () => {
       <p className='pb-3 mt-12 font-medium text-zinc-700 border-b border-gray-400'>My Appointments</p>
       <div >
         {
-          appointments.slice(0,3).map((item,index)=> (
+          appointments.map((item,index)=> (
             <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b border-gray-400' key={index}>
               <div >
                 <img className='w-32 bg-indigo-50' src={item.docData.image} alt="" />
@@ -40,7 +45,7 @@ const MyAppointments = () => {
                 <p className='text-zinc-700 font-medium mt-1'>Address:</p>
                 <p className='text-xs'>{item.docData.address.line1}</p>
                 <p className='text-xs'>{item.docData.address.line2}</p>
-                <p className='text-sm mt-1'><span className='text-sm text-neutral-700 font-medium ' >Date & Time:</span> 28th February 2025 | 9:30 PM </p>
+                <p className='text-sm mt-1'><span className='text-sm text-neutral-700 font-medium ' >Date & Time:</span> {slotDateFormat(item.slotDate)} | {item.slotTime} </p>
               </div>
               <div></div>
               <div className='flex flex-col gap-2 justify-end'>

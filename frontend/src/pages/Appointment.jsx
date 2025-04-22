@@ -55,7 +55,7 @@ const Appointment = () => {
         let month = currentDate.getMonth() + 1
         let year = currentDate.getFullYear()
 
-        const slotDate = day + "_" + month + "_" + year
+        const slotDate = day + "/" + month + "/" + year
         const slotTime = formattedTime
 
         const isSlotAvailable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true
@@ -100,7 +100,7 @@ const Appointment = () => {
       if (data.success) {
         toast.success(data.message)
         getDoctorsData()
-        navigate('my-appointments')
+        return navigate('/my-appointments')
       } else {
         toast.error(data.message)
       }
@@ -162,7 +162,7 @@ const Appointment = () => {
         <div className='flex gap-3 items-center w-min overflow-x-scroll mt-4'>
           {
             docSlots.length && docSlots.map((item, index) => (
-              <div onClick={() => setSlotIndex(index)} className={`text-center py-6 min-w-16 md:min-w-20 rounded-full cursor-pointer ${slotIndex === index ? 'bg-[#5f6FFF] text-white  ' : 'border border-gray-200'}`} key={index}>
+              <div onClick={() => setSlotIndex(index)} className={`text-center py-6 min-w-16 md:min-w-20 overflow-x-scroll rounded-full cursor-pointer ${slotIndex === index ? 'bg-[#5f6FFF] text-white  ' : 'border border-gray-200'}`} key={index}>
                 <p>{item[0] && daysOfTheWeek[item[0].dateTime.getDay()]}</p>
                 <p>{item[0] && item[0].dateTime.getDate()}</p>
 
